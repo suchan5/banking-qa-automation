@@ -13,7 +13,10 @@ public class FirstApiTest extends BaseTest {
         System.out.println("Hello Junit!");
         given()
                 .when()
+                // Uses JSONPlaceholder.
+                // Disabled because current BaseTest points to ReqRes.
                 .get("/posts/1")
+
                 .then()
                 .statusCode(200)
                 .body("userId", equalTo(1))

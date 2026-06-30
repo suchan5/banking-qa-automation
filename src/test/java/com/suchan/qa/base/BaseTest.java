@@ -7,6 +7,6 @@ import org.junit.jupiter.api.BeforeAll;
 public class BaseTest {
     @BeforeAll
     static void setup() {
-        RestAssured.baseURI = "https://jsonplaceholder.typicode.com";
+        RestAssured.baseURI = "https://reqres.in";
     }
 }
