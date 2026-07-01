@@ -11,9 +11,10 @@ public class FirstApiTest extends BaseTest {
     @Test
     void firstTest() {
         System.out.println("Hello Junit!");
+
         given()
                 .when()
-                // Uses JSONPlaceholder.
+                // Uses JSONPlaceholder. "https://jsonplaceholder.typicode.com"
                 // Disabled because current BaseTest points to ReqRes.
                 .get("/posts/1")
 
