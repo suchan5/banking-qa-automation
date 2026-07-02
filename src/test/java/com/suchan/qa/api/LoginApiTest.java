@@ -7,7 +7,8 @@ import com.suchan.qa.utils.ConfigReader;
 import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.given;
 import io.restassured.http.ContentType;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class LoginApiTest extends BaseTest {
@@ -37,5 +38,7 @@ public class LoginApiTest extends BaseTest {
         String token = loginResponse.getToken();
 
         assertNotNull(token);
+        assertFalse(token.isEmpty());
+        System.out.println(token);
     }
 }
