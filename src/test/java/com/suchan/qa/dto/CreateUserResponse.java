@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @AllArgsConstructor
 @Builder
 public class CreateUserResponse {
-    private String name;
-    private String job;
-    private String id;
-    private String createdAt;
+    private Integer id;
+    private String firstName;
+    private String lastName;
+    private Integer age;
 }

@@ -3,7 +3,6 @@ package com.suchan.qa.api;
 import com.suchan.qa.base.BaseTest;
 import com.suchan.qa.dto.CreateUserRequest;
 import com.suchan.qa.dto.CreateUserResponse;
-import com.suchan.qa.utils.ConfigReader;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.given;
@@ -14,25 +13,28 @@ public class CreateUserApiTest extends BaseTest {
     void createUserTest() {
         System.out.println("Hello Junit!");
 
-        // DTO Builder 사용 (롬복의 @Builder)
         CreateUserRequest createUserRequest = CreateUserRequest.builder()
-                .name("Su")
-                .job("QA Engineer")
+                .firstName("Su Chan")
+                .lastName("Kim")
+                .age(55)
                 .build();
 
        CreateUserResponse createUserResponse =  given()
                 .contentType(ContentType.JSON)
-                .header("x-api-key", ConfigReader.getProperty("api.key")) // ConfigReader클래스에 깃에 올라가면 안되는 정보 저장
                 .body(createUserRequest) // request body
+               .log().all()
 
                 .when()
-                    .post("/api/users")
+                    .post("/users/add")
 
                 .then().statusCode(201)
+                .log().all()
                 .extract()
                 .as(CreateUserResponse.class); // response body
 
-            assertEquals("Su", createUserResponse.getName());
-            assertEquals("QA Engineer", createUserResponse.getJob());
+
+            assertEquals("Su Chan", createUserResponse.getFirstName());
+            assertEquals("Kim", createUserResponse.getLastName());
+            assertEquals(55, createUserRequest.getAge());
     }
 }

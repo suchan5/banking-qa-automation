@@ -3,7 +3,6 @@ package com.suchan.qa.api;
 import com.suchan.qa.base.BaseTest;
 import com.suchan.qa.dto.LoginRequest;
 import com.suchan.qa.dto.LoginResponse;
-import com.suchan.qa.utils.ConfigReader;
 import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.given;
 import io.restassured.http.ContentType;
@@ -17,17 +16,17 @@ public class LoginApiTest extends BaseTest {
         System.out.println("Hello Junit!");
 
         LoginRequest loginRequest = LoginRequest.builder()
-                .email("eve.holt@reqres.in")
-                .password("cityslicka")
+                .username("emilys")
+                .password("emilyspass")
                 .build();
 
         LoginResponse loginResponse =  given()
                 .contentType(ContentType.JSON)
-                .header("x-api-key", ConfigReader.getProperty("api.key"))
                 .body(loginRequest)
+                .log().all()
 
                 .when()
-                .post("/api/login")
+                .post("/auth/login")
 
                 .then()
                 .statusCode(200)
@@ -35,7 +34,7 @@ public class LoginApiTest extends BaseTest {
                 .extract()
                 .as(LoginResponse.class);
 
-        String token = loginResponse.getToken();
+        String token = loginResponse.getAccessToken();
 
         assertNotNull(token);
         assertFalse(token.isEmpty());

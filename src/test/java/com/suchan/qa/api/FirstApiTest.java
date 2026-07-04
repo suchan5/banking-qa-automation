@@ -12,19 +12,19 @@ public class FirstApiTest extends BaseTest {
     void firstTest() {
         System.out.println("Hello Junit!");
 
-//        given()
-//                .when()
-//                // Uses JSONPlaceholder. "https://jsonplaceholder.typicode.com"
-//                // Disabled because current BaseTest points to ReqRes.
-//                .get("/posts/1")
-//
-//                .then()
-//                .statusCode(200)
-//                .body("userId", equalTo(1))
-//                .body("id", equalTo(1))
-//                .body("title", equalTo("sunt aut facere repellat provident occaecati excepturi optio reprehenderit"))
-//                .body("body", notNullValue())
-//                .log().all();
+        given()
+                .log().all() // request log
+
+                .when()
+                .get("/users/1")
+
+                .then()
+                .statusCode(200)
+                .log().all() //response log
+                .body("id", equalTo(1))
+                .body("firstName", equalTo("Emily"))
+                .body("company.address.postalCode", equalTo("37657"));
+
 
     }
 }

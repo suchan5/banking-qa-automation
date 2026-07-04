@@ -10,5 +10,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class LoginResponse {
-    private String token;
+    private String accessToken;
+
 }

@@ -8,6 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class CreateUserRequest {
-    private String name;
-    private String job;
+    private String firstName;
+    private String lastName;
+    private Integer age;
 }
