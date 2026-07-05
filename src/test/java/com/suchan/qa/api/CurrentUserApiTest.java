@@ -36,11 +36,11 @@ public class CurrentUserApiTest extends BaseTest {
         String token = loginResponse.getAccessToken();
 
         assertNotNull(token);
-        assertFalse(token.isEmpty());
+        assertFalse(token.isBlank());
         System.out.println(token);
 
         // Authorization: call protected API
-        CurrentUserResponse currentUserResponse = given()
+        CurrentUserResponse response = given()
                 .contentType(ContentType.JSON)
                 .header("Authorization", "Bearer " + token)
                 .when()
@@ -52,8 +52,8 @@ public class CurrentUserApiTest extends BaseTest {
                 .as(CurrentUserResponse.class);
 
         // Assert
-        assertEquals("emilys", currentUserResponse.getUsername());
-        assertEquals("Emily", currentUserResponse.getFirstName());
-        assertNotNull(currentUserResponse.getEmail());
+        assertEquals("emilys", response.getUsername());
+        assertEquals("Emily", response.getFirstName());
+        assertNotNull(response.getEmail());
     }
 }

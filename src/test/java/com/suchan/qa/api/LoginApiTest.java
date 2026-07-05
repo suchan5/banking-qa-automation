@@ -8,6 +8,7 @@ import static io.restassured.RestAssured.given;
 import io.restassured.http.ContentType;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.hamcrest.Matchers.equalTo;
 
 public class LoginApiTest extends BaseTest {
     @Test
@@ -39,4 +40,28 @@ public class LoginApiTest extends BaseTest {
         assertFalse(token.isEmpty());
         System.out.println(token);
     }
+
+    @Test
+    void loginWithWrongPasswordTest() {
+        LoginRequest loginRequest = LoginRequest.builder()
+                .username("emilys")
+                .password("wrongpassword")
+                .build();
+
+        given()
+                .contentType(ContentType.JSON)
+                .body(loginRequest)
+                .log().all()
+
+                .when()
+                .post("/auth/login")
+
+                .then()
+                .statusCode(400)
+                .body("message", equalTo("Invalid credentials"))
+                .log().all();
+
+
+    }
+
 }
