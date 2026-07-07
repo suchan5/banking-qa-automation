@@ -64,8 +64,9 @@ public class CurrentUserApiTest extends BaseTest {
         int userId = currentUserResponse.getId();
         assertEquals(1, userId);
 
-        // userId를 다른 API호출에 전달
+        // userId를 다른 API호출에 전달 : getUserById
         CurrentUserResponse user = given()
+
                 .when()
                 .get("/users/" + userId)
 
