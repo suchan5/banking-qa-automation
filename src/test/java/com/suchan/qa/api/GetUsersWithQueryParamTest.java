@@ -8,7 +8,7 @@ import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 public class GetUsersWithQueryParamTest extends BaseTest {
     @Test
-    void getUserWithQueryParam() {
+    void getUsersWithQueryParametersShouldReturnExpectedUsers() {
         UsersResponse usersResponse = given()
                 .queryParam("limit", 3)
                 .queryParam("skip", 20)

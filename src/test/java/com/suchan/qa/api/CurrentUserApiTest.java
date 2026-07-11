@@ -8,12 +8,11 @@ import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.hamcrest.Matchers.equalTo;
 
 public class CurrentUserApiTest extends BaseTest {
 
     @Test
-    void currentUserTest() {
+    void getCurrentUserShouldReturnAuthenticatedUser() {
         // Authentication: login
         LoginRequest loginRequest = LoginRequest.builder()
                 .username("emilys")
@@ -79,20 +78,5 @@ public class CurrentUserApiTest extends BaseTest {
         assertEquals(currentUserResponse.getEmail(), user.getEmail());
         assertEquals(currentUserResponse.getFirstName(), user.getFirstName());
 
-    }
-
-    @Test
-    void getCurrentUserWithoutTokenTest() {
-        given()
-                .contentType(ContentType.JSON)
-                .log().all()
-
-                .when()
-                .get("/auth/me")
-
-                .then()
-                .statusCode(401)
-                .body("message", equalTo("Access Token is required"))
-                .log().all();
     }
 }

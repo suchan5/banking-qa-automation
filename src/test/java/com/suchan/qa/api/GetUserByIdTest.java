@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GetUserByIdTest extends BaseTest {
    @Test
-    void getUserById() {
+    void getUserByIdShouldReturnExpectedUser() {
         CurrentUserResponse currentUserResponse = given()
                 .pathParam("id", 5)
 

@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CreateUserApiTest extends BaseTest {
     @Test
-    void createUserTest() {
+    void createUserShouldReturnCreatedUser() {
         CreateUserRequest createUserRequest = CreateUserRequest.builder()
                 .firstName("Su Chan")
                 .lastName("Kim")

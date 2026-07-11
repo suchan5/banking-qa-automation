@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class DeleteUserApiTest extends BaseTest {
     @Test
-    void deleteUserTest () {
+    void deleteUserShouldReturnDeletedUser() {
         DeleteUserResponse deleteUserResponse = given()
                 .pathParam("id", 1)
 

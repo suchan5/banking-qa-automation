@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class UpdateUserTest extends BaseTest {
     @Test
-    void updateUser () {
+    void updateUserShouldReturnUpdatedUser() {
         UpdateUserRequest updateUserRequest = UpdateUserRequest.builder()
                 .lastName("channie")
                 .build();

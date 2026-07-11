@@ -12,9 +12,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class LoginApiTest extends BaseTest {
     @Test
-    void loginTest() {
-        System.out.println("Hello Junit!");
-
+    void loginWithValidCredentialsShouldReturnAccessToken() {
         LoginRequest loginRequest = LoginRequest.builder()
                 .username("emilys")
                 .password("emilyspass")
@@ -38,11 +36,10 @@ public class LoginApiTest extends BaseTest {
 
         assertNotNull(token);
         assertFalse(token.isEmpty());
-        System.out.println(token);
     }
 
     @Test
-    void loginWithWrongPasswordTest() {
+    void loginWithInvalidPasswordShouldReturn400() {
         LoginRequest loginRequest = LoginRequest.builder()
                 .username("emilys")
                 .password("wrongpassword")
