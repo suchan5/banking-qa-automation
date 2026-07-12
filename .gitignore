@@ -2,4 +2,5 @@
 target/
 *.iml
 
-src/test/resources/config.properties.DS_Store
+src/test/resources/config.properties
+.DS_Store
